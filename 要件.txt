@@ -1,0 +1,75 @@
+タイトル：株専用のメモアプリ
+機能概要：東証1部・２部、JASDAQ、東証マザーズに上場している銘柄全てに対して、任意の銘柄に紐付くメモを作成・管理できる
+詳細機能：
+    ー　銘柄（メモ）取得
+        ー　全取得
+        ー　指定取得（フィルタリング）
+            ー　銘柄コード
+            ー　会社名
+            ー　上場市場
+            ー　業種（33・17）
+            ー　メモ
+    ー　銘柄（メモ）更新
+        ー　メモ追加
+        ー　メモ削除
+銘柄詳細（マスターデータ）：
+    ー　id
+        ー　int
+    ー　固定メモ詳細id
+        ー　int|null
+    ー　フリーメモ詳細id
+        ー　int|null
+    ー　銘柄コード
+        ー　int
+    ー　会社名
+        ー　char
+    ー　上場市場(VO)
+        ー　char
+    ー　３３業種(VO)
+        ー　char
+    ー　１７業種(VO)
+        ー　char
+固定メモ詳細（銘柄詳細:固定メモ詳細=1:1）：
+    ー　id
+        ー　int
+    ー　銘柄種別(VO) colunm names canbe is_value, is_growth but Model has only one property for it.
+        ー　バリュー｜グロース｜null
+    ー　価格転嫁可(VO)
+        ー　boolean|null
+    ー　親会社
+        ー　char|null
+    ー　株主（複数）
+        ー　char|null
+    ー　得意先（複数）（トヨタ、NTTデータ、etc）
+        ー　char|null
+    ー　提携先（複数）（GFA、NTTドコモ、etc）
+        ー　char|null
+    ー　出資先（複数）（PFN、WeWork、etc）
+        ー　char|null
+    ー　関連テーマ（複数）（NFT,EV,etc）
+        ー　char|null
+    ー　プロダクト種別（複数）（CRM、セラミック、化成品、etc）
+        ー　char|null
+    ー　プロダクト詳細（複数）（金融向け、次世代電池向け、イメージング材料、etc）
+        ー　char|null
+    ー　createdAt
+        ー　UTC
+    ー　modifiedAt
+        ー　UTC|nul
+
+フリーメモ詳細（銘柄詳細:フリーメモ詳細＝1:N）：
+    ー　id
+        ー　int
+    ー　銘柄詳細id
+        ー　int
+    ー　free_keyword
+        ー　char
+    ー　free_value
+        ー　char
+    ー　createdAt
+        ー　UTC
+    ー　modifiedAt
+        ー　UTC|null
+
+
+        

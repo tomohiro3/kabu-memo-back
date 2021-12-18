@@ -1,0 +1,21 @@
+free_noteは
+data : {
+    hoge: 'hoge',
+    foo: 'foo',
+    free_note1: 'free_note1',
+    free_note2: 'free_note2',
+    free_note3: 'free_note3',
+    free_noteX: 'free_noteX',
+}
+と渡すのではなく
+data : {
+    hoge: 'hoge',
+    foo: 'foo',
+    free_notes: [
+        {free_note1: ['free_keyword1', 'free_value1']},
+        {free_note2: ['free_keyword2', 'free_value2']},
+        {free_note3: ['free_keyword3', 'free_value3']},
+        {free_noteX: ['free_keywordX', 'free_valueX']},
+    ]
+}
+と、配列で渡す（配列の中のデータ構造をどうするかは未定）

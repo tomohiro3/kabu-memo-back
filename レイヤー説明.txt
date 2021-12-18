@@ -1,0 +1,14 @@
+view
+     HTTPSリクエストの受付、servicesの呼び出し、レスポンスの送信
+view-models
+    リクエスト（とレスポンス）ボディのバリデーション
+services
+    リクエストに応じたCRUD実行のためのrepo呼び出し、その実行結果をviewに返す
+repositories
+    I／Oデバイスへのデータ操作とその実行結果をservicesに返す
+models
+    アプリケーションが扱うデータの構造とそのルールを定める
+value-objects
+    不変でかつ識別不要なデータを定める
+lib
+    アプリケーション全体で汎用的な処理を定める

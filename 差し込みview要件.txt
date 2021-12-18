@@ -1,0 +1,56 @@
+Expressにおけるパスへのリクエストとそのハンドリングの一例
+app.use({PATH}), {ROUTER})
+
+Routerの一例
+import { Router } from 'express';
+
+const stockRouter = Router();
+
+stockRouter.get('/', function (req, res) {
+  console.log(`stock path`);
+  res.send('hello world');
+});
+
+export default stockRouter;
+
+これをFlaskで言う下記のようなことをできるようになりたい。
+
+class UserAPI(MethodView):
+
+    def get(self):
+        users = User.query.all()
+        ...
+
+    def post(self):
+        user = User.from_form_data(request.form)
+        ...
+
+app.add_url_rule('/users/', view_func=UserAPI.as_view('users'))
+
+CRUDが定義されたクラスを作成
+このクラスはroutingを気にしなくて良い純粋なクラス
+
+上記クラスを受け取って、リクエストに対して一対一でハンドリングできるRouting処理（クラス）
+
+それをまとめてapp.use（）する
+
+ APIクラスをインスタンス化
+    get...
+    post...
+Routerでは
+METHOD一つ一つに上記インスタンスの関数を充てる
+ここでダイナミックにCRUDを呼び出せるように実装。つまりあるクラスはGETのみあるクラスはGET,POSTが定義されていても
+定義されている分だけ呼べるようにする
+router = Router()
+api = new Api()
+router.get('/', function(req, res) {
+    const result = api.get
+    res.send(result)
+});
+router.post('/', function(req, res) {
+    const result = api.post
+    res.send(result)
+});
+return {url: Api.toUrl, viewFunction: router}
+
+exdpoints = Classes.map(class=> router(class))
