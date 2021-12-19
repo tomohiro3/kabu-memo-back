@@ -1,5 +1,5 @@
 view
-     HTTPSリクエストの受付、servicesの呼び出し、レスポンスの送信
+     HTTPSリクエストの受付、DBコネクション作成, servicesの呼び出し、レスポンスの送信
 view-models
     リクエスト（とレスポンス）ボディのバリデーション
 services
@@ -11,4 +11,63 @@ models
 value-objects
     不変でかつ識別不要なデータを定める
 lib
-    アプリケーション全体で汎用的な処理を定める
+    アプリケーション全体で汎用的な処理を定める、アプリケーション外（DBなど）のための処理やInterfaceなどを定める
+
+
+lib/databaseでDataBaseやテーブルクライアントを作成
+クライアントをインスタンス化するときにコネクションを貼り、
+実際に使用するDB特有クエリを、レポジトリで呼び出している関数名に紐付けて書く
+
+function createDbClient() {
+    return DataBaseClient
+}
+
+class DataBaseClient {
+    db: SomeDatabase
+    constructer(
+        this,
+        nameForDBConnection,
+        userForDBConnection,
+        passwdForDBConnection,
+        hostForDBConnection,
+        portForDBConnection
+    ) {
+        this.db = someDBLibrary.connect(argsForDBConnection)
+    }
+    searchByQuery(this, query) {
+        const result this.db.query(query)
+        return result
+    }
+}
+
+function
+viewでDB Clientを作成
+それと共に、リクエストparamをサービスにパス
+
+import createDbClinet from 'lib/database';
+
+class View {
+    get(params) {
+        const dbClient = createDbClient()
+        const result = someService.getList(dbClinet, params)
+        return result
+    }
+}
+
+サービスではレポジトリにDB Clinetを渡してレポジトリをインスタンス化
+インスタンス化されたレポジトリを使ってsearchやらupdateを行い、そのレスポンス結果を返す
+
+import SomeRepository from 'soomewhere';
+
+function getList(dbClient, param1, param2, ...args) {
+    const someRepository = SomeRepository(dbClinet)
+    const something = someRepository.searchByQuery(args)
+}
+
+レポジトリクラスでは受け取ったDB Clinetを使ってクエリを投げ、その結果を返す
+class SomeRepository {
+    searchByQuery(this, query) {
+        const result = this.dbClient.searchByQuery(query)
+        return result
+    }
+}

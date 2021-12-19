@@ -1,3 +1,5 @@
+import { createDbClient } from '../lib/database';
+import getList from '../services/stock';
 import ApiView from './ApiView';
 
 class Stock extends ApiView {
@@ -5,7 +7,10 @@ class Stock extends ApiView {
     super();
   }
   get(req: any): any {
-    return { res: 'Get Stock Class' };
+    const dbClinet = createDbClient();
+    const result = getList(dbClinet);
+
+    return { res: result };
   }
 }
 

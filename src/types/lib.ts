@@ -3,3 +3,5 @@ type Fields<T> = { [P in FieldNames<T>]: T[P] };
 type FieldNames<T> = {
   [P in keyof T]: T[P] extends (...args: any[]) => any ? never : P;
 }[keyof T];
+
+export type Dict = { [key: string]: any };

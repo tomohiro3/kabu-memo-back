@@ -10,6 +10,9 @@ class Bookmark extends ApiView {
   post(req: any): any {
     return { res: 'Post Bookmark Class' };
   }
+  delete(req: any): any {
+    return { res: 'Post Bookmark Class' };
+  }
 }
 
 export default Bookmark;

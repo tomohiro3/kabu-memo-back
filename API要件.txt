@@ -1,0 +1,3 @@
+stock-GET, PATCH, DELETE (POSTするなら、対象はstockではなくfixed_noteかfree_note)
+freenote - GET
+masterdata - GET
