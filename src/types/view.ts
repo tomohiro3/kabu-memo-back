@@ -1,5 +1,5 @@
 export type ViewConstructor = {
-  new (): ViewInterface;
+  new (dbClient: any): ViewInterface;
   toUrl: () => string;
 };
 // 列挙しているメソッド以外に受け取る可能性のある分を定義する必要がある。

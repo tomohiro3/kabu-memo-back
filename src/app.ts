@@ -1,6 +1,6 @@
 import express from 'express';
 import makeApi from './lib/make-api';
-import views from './view';
+import views from './presentation/controllers';
 
 const app = express();
 const port = 3000;

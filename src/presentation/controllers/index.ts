@@ -1,4 +1,4 @@
-import { ViewConstructor } from '../types/view';
+import { ViewConstructor } from '../../types/view';
 import Bookmark from './Bookmark';
 import Stock from './Stock';
 
