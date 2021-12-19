@@ -20,7 +20,7 @@ class MockDataBaseClient {
     };
   }
 
-  searchByQuery() {
+  execute() {
     return this.mockData;
   }
 }

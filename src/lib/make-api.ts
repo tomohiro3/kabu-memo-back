@@ -1,27 +1,27 @@
 import { Router } from 'express';
-import { createDbClient } from '../infrasttructure/database';
-import { ViewConstructor, ViewInterface } from '../types/view';
+import { createDbClient } from '../infrastructure/database';
+import { ControllerConstructor, IController } from '../types/controller';
 // import DBClient from '../somewhere';
 
 const METHODS = ['get', 'post', 'put', 'patch', 'delete'] as const;
 type MethodsType = typeof METHODS[number];
 
-function makeApi(View: ViewConstructor) {
+function makeApi(Controller: ControllerConstructor) {
   const router = Router();
 
-  const propertyMethods = Object.getOwnPropertyNames(View.prototype as Array<keyof ViewInterface>);
-  const view = new View(createDbClient());
+  const propertyMethods = Object.getOwnPropertyNames(Controller.prototype as Array<keyof IController>);
+  const controller = new Controller(createDbClient());
 
   METHODS.forEach((method: MethodsType) => {
     if (propertyMethods.indexOf(method) > -1) {
       router[method]('/', function (req, res) {
-        const result = view[method]!(req);
+        const result = controller[method]!(req);
         return res.json(result);
       });
     }
   });
 
-  const url = `/${View.toUrl()}`;
+  const url = `/${Controller.toUrl()}`;
   return { url, viewFunction: router };
 }
 

@@ -1,7 +1,7 @@
-class ApiView {
+class Base {
   static toUrl() {
     return this.name.toLowerCase();
   }
 }
 
-export default ApiView;
+export default Base;

@@ -1,9 +1,9 @@
-export type ViewConstructor = {
-  new (dbClient: any): ViewInterface;
+export type ControllerConstructor = {
+  new (dbClient: any): IController;
   toUrl: () => string;
 };
 // 列挙しているメソッド以外に受け取る可能性のある分を定義する必要がある。
-export interface ViewInterface {
+export interface IController {
   get?: (req: any) => void;
   post?: (req: any) => void;
   patch?: (req: any) => void;

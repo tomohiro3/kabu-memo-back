@@ -1,6 +1,6 @@
-import ApiView from './ApiView';
+import Base from './Base';
 
-class Bookmark extends ApiView {
+class Bookmark extends Base {
   constructor() {
     super();
   }

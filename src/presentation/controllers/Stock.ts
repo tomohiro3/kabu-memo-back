@@ -1,10 +1,10 @@
 import IStockService from '../../domain/repository-interfaces/stock';
-import StockRepository from '../../infrasttructure/repositories/stock';
+import StockRepository from '../../infrastructure/repositories/stock';
 import stockService from '../../services/stock';
-import ApiView from './ApiView';
+import Base from './Base';
 
-class Stock extends ApiView {
-  repository: IStockService;
+class Stock extends Base {
+  private repository: IStockService;
   constructor(dbClinet: any) {
     super();
     this.repository = new StockRepository(dbClinet);
