@@ -8,9 +8,7 @@
     "test:coverage": "jest --collect-coverage",
     "lint": "eslint --ext .ts .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx}' --config ./.prettierrc",
-    "dev": "ts-node-dev src/app.ts",
-    "start": "node build/src/index.js",
-    "build": "tsc"
+    "start": "ts-node-dev src/app.ts"
   },
   "author": "",
   "license": "ISC",

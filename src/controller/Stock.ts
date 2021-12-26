@@ -1,8 +1,8 @@
 import { createDbClient } from '../lib/database';
 import getList from '../services/stock';
-import ApiView from './ApiView';
+import Base from './Base';
 
-class Stock extends ApiView {
+class Stock extends Base {
   constructor() {
     super();
   }
