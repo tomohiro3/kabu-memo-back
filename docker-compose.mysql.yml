@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mysql:
+    build: ./docker/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kabu_memo
+      MYSQL_USER: kabu_memo_user
+      MYSQL_PASSWORD: kabu_memo_pass
+      TZ: Asia/Tokyo
+    ports:
+      - '3306:3306'
+    container_name: kabu_memo_mysql
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d:ro
