@@ -1,16 +1,20 @@
 version: '3.8'
 
 services:
-  mysql:
-    build: ./docker/mysql
+  mongo:
+    build: ./docker/mongodb
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: kabu_memo
-      MYSQL_USER: kabu_memo_user
-      MYSQL_PASSWORD: kabu_memo_pass
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: kabu-memo
       TZ: Asia/Tokyo
+    # command:
+    #   - --auth
+    #   - -f
+    #   - /etc/mongod.conf
+        
     ports:
-      - '3306:3306'
-    container_name: kabu_memo_mysql
-    # volumes:
-    #   - db_data:/var/lib/mysql
+      - 27017:27017
+    volumes:
+      - ./docker/mongodb/initdb.d:/docker-entrypoint-initdb.d:ro
+    container_name: kabu-memo-mongodb
