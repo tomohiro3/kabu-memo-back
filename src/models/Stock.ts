@@ -5,9 +5,9 @@ export class Stock {
   id!: number;
   code!: number;
   companyName!: string;
-  market!: number;
+  market!: string;
   industry33!: string;
-  industry17!: number;
+  industry17!: string;
   fixedNote?: FixedNote;
   freeNotes?: FreeNote[];
 
