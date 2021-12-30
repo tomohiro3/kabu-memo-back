@@ -1,20 +1,16 @@
-import { createDbClient } from '../lib/database';
+import { MongodbClient } from '../lib/database';
 import Base from './Base';
 
 class Bookmark extends Base {
-  constructor() {
-    super();
+  constructor(dbConnectionPool: MongodbClient) {
+    super(dbConnectionPool);
   }
-  get(req: any): any {
-    const db = createDbClient();
-    console.log(db);
-    return { res: 'Get Bookmark Class' };
+  async get(req: any): Promise<any> {
+    const result = await this.repository.searchByQuery();
+    return { res: result };
   }
-  post(req: any): any {
-    return { res: 'Post Bookmark Class' };
-  }
-  delete(req: any): any {
-    return { res: 'Post Bookmark Class' };
+  async post(req: any): Promise<any> {
+    return { res: 'post' };
   }
 }
 

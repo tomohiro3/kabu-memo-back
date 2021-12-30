@@ -1,15 +1,13 @@
-import { createDbClient } from '../lib/database';
-import { getList } from '../services/stock';
+import { MongodbClient } from '../lib/database';
 import Base from './Base';
 
 class Stock extends Base {
-  constructor() {
-    super();
+  constructor(db: MongodbClient) {
+    super(db);
   }
-  async get(req: any): Promise<any> {
-    const dbClinet = await createDbClient();
-    const result = await getList(dbClinet);
 
+  async get(req: any): Promise<any> {
+    const result = await this.repository.searchByQuery();
     return { res: result };
   }
 }
