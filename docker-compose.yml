@@ -7,14 +7,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongo
       MONGO_INITDB_ROOT_PASSWORD: mongo
       MONGO_INITDB_DATABASE: kabu-memo
-      TZ: Asia/Tokyo
-    # command:
-    #   - --auth
-    #   - -f
-    #   - /etc/mongod.conf
-        
+      TZ: Asia/Tokyo        
     ports:
       - 27017:27017
+    container_name: kabu-memo-mongodb
     volumes:
       - ./docker/mongodb/initdb.d:/docker-entrypoint-initdb.d:ro
-    container_name: kabu-memo-mongodb
