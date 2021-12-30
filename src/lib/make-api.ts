@@ -12,8 +12,8 @@ function makeApi(Controller: ControllerConstructor) {
 
   METHODS.forEach((method: MethodsType) => {
     if (propertyMethods.indexOf(method) > -1) {
-      router[method]('/', function (req, res) {
-        const result = controller[method]!(req);
+      router[method]('/', async function (req, res) {
+        const result = await controller[method]!(req);
         return res.json(result);
       });
     }

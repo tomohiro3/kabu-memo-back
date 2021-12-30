@@ -1,30 +1,23 @@
-type MockData = {
-  name: string;
-  code: number;
-  market: string;
-  industry33: string;
-  industry17: string;
-  freeKeywords: string;
-};
+import { MongoClient, Db } from 'mongodb';
+const uriString =
+  'mongodb://mongo:mongo@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false';
 
-class MockDataBaseClient {
-  mockData: MockData;
-  constructor() {
-    this.mockData = {
-      name: 'mockName',
-      code: 9999,
-      market: '東1',
-      industry33: 'ゴム',
-      industry17: '化学',
-      freeKeywords: '資本提携',
-    };
+class MongodbClient {
+  db!: Db;
+
+  constructor(db: Db) {
+    this.db = db;
   }
 
-  searchByQuery() {
-    return this.mockData;
+  static async connect(url: string) {
+    return new this((await MongoClient.connect(url)).db('kabu-memo'));
+  }
+
+  async searchByQuery() {
+    return await this.db.collection('contacts').find().limit(50).toArray();
   }
 }
 
-export function createDbClient() {
-  return new MockDataBaseClient();
+export async function createDbClient() {
+  return MongodbClient.connect(uriString);
 }

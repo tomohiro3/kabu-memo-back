@@ -1,6 +1,6 @@
 export class Repository {
   constructor(protected dbClient: any) {}
-  searchByQuery() {
-    return this.dbClient.searchByQuery();
+  async searchByQuery() {
+    return await this.dbClient.searchByQuery();
   }
 }
