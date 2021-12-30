@@ -1,5 +1,7 @@
+import { MongodbClient } from '../lib/database';
+
 export class Repository {
-  constructor(protected dbClient: any) {}
+  constructor(private dbClient: MongodbClient) {}
   async searchByQuery() {
     return await this.dbClient.searchByQuery();
   }
