@@ -1,7 +1,7 @@
 import { MongodbClient } from '../lib/database';
 import Base from './Base';
 
-class Stock extends Base {
+class Stocks extends Base {
   constructor(db: MongodbClient) {
     super(db);
   }
@@ -12,4 +12,4 @@ class Stock extends Base {
   }
 }
 
-export default Stock;
+export default Stocks;

@@ -1,7 +1,7 @@
 import { MongodbClient } from '../lib/database';
 import Base from './Base';
 
-class Bookmark extends Base {
+class Bookmarks extends Base {
   constructor(dbConnectionPool: MongodbClient) {
     super(dbConnectionPool);
   }
@@ -14,4 +14,4 @@ class Bookmark extends Base {
   }
 }
 
-export default Bookmark;
+export default Bookmarks;

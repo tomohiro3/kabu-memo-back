@@ -1,6 +1,6 @@
 import { ControllerConstructor } from '../types/controller';
-import Bookmark from './Bookmark';
-import Stock from './Stock';
+import Bookmarks from './Bookmarks';
+import Stocks from './Stocks';
 
-const controllers: ControllerConstructor[] = [Stock, Bookmark];
+const controllers: ControllerConstructor[] = [Stocks, Bookmarks];
 export default controllers;

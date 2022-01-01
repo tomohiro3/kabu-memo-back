@@ -14,7 +14,7 @@ import makeApi from './lib/make-api';
 
   app.use(cors(options));
 
-  // app.use(express.json());
+  app.use(express.json());
 
   const pool = await createDbConnection();
   const apis = controllers.map((controller) => makeApi(controller, pool));
