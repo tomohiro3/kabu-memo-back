@@ -1,17 +1,29 @@
-import { FixedNote } from './FixedNote';
-import { FreeNote } from './FreeNote';
+import { FreeNoteType } from '../types/models';
 
-export class Stock {
-  id!: number;
+type NoteType = {
+  id: number;
+  valueOrGrowth: string | null;
+  isProductPriceShiftable: boolean | null;
+  parentCompany: string | null;
+  shareHolders: string[] | null;
+  customers: string[] | null;
+  partnerCompanies: string[] | null;
+  investingCompanies: string[] | null;
+  theme: string[] | null;
+  productCategories: string[] | null;
+  productUsecases: string[] | null;
+  freeNotes: FreeNoteType[] | null;
+};
+
+export default class StockModel {
   code!: number;
-  companyName!: string;
+  name!: string;
   market!: string;
+  group!: string;
   industry33!: string;
-  industry17!: string;
-  fixedNote?: FixedNote;
-  freeNotes?: FreeNote[];
+  note!: NoteType;
 
-  constructor(props: Stock) {
+  constructor(props: StockModel) {
     Object.assign(this, props);
   }
 }

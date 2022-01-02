@@ -1,5 +1,3 @@
-import { Repository } from './repository';
+import { Repository } from './Repository';
 
-class StockRepository extends Repository {}
-
-export default StockRepository;
+export default class StockRepository extends Repository {}

@@ -5,7 +5,7 @@ import { ControllerConstructor, IController } from '../types/controller';
 const METHODS = ['get', 'post', 'put', 'patch', 'delete'] as const;
 type MethodsType = typeof METHODS[number];
 
-function makeApi(Controller: ControllerConstructor, pool: MongodbClient) {
+export default function makeApi(Controller: ControllerConstructor, pool: MongodbClient) {
   const router = Router();
 
   const propertyMethods = Object.getOwnPropertyNames(Controller.prototype as Array<keyof IController>);
@@ -13,15 +13,16 @@ function makeApi(Controller: ControllerConstructor, pool: MongodbClient) {
 
   METHODS.forEach((method: MethodsType) => {
     if (propertyMethods.indexOf(method) > -1) {
-      router[method]('/', async function (req, res) {
-        const result = await controller[method]!(req);
-        return res.json(result);
-      });
+      router[method](
+        method === 'put' || method === 'patch' || method === 'delete' ? '/:code' : '/',
+        async function (req, res) {
+          const result = await controller[method]!(req);
+          return res.json(result);
+        }
+      );
     }
   });
 
   const url = `/${Controller.toUrl()}`;
   return { url, controllerFunction: router };
 }
-
-export default makeApi;
