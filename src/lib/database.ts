@@ -24,6 +24,7 @@ export class MongodbClient {
     Object.keys(attributes).forEach((key) => {
       filter[key] = attributes[key];
     });
+
     return await this.pool
       .collection('stocks')
       .find({ ...filter }, { projection: { _id: 0 } })
@@ -32,11 +33,14 @@ export class MongodbClient {
   }
 
   async uddate(code: number, attributes: Dict) {
-    const filter: Dict = {};
-    Object.keys(attributes).forEach((key) => {
-      filter[key] = attributes[key];
-    });
-    return await this.pool.collection('stocks').updateOne({ code }, { $set: filter });
+    const setFilter: Dict = {};
+    const unsetFilter: Dict = {};
+
+    for (const [key, value] of Object.entries(attributes)) {
+      value === null ? (unsetFilter[key] = '') : (setFilter[key] = value);
+    }
+
+    return await this.pool.collection('stocks').updateOne({ code }, { $set: setFilter, $unset: unsetFilter });
   }
 }
 

@@ -15,6 +15,7 @@ export default class Stocks extends Base {
     const result = await this.repository.find(attributes, page, limit);
     return { res: result };
   }
+
   async patch(req: Request): Promise<any> {
     const { code, attributes } = this.validator.patchRequest(req.params.code, req.body);
     const result = await this.repository.update(code, attributes);

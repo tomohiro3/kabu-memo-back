@@ -58,16 +58,37 @@ export default class StocksValidator {
   patchRequest(code: string, body: PatchBody) {
     const attributes: Dict = {};
     const intCode = Number(code);
+
     if (body.valueOrGrowth) attributes.valueOrGrowth = body.valueOrGrowth;
+    else if (body.valueOrGrowth === null) attributes.valueOrGrowth = null;
+
     if (body.isProductPriceShiftable) attributes.isProductPriceShiftable = body.isProductPriceShiftable === 'true';
+    else if (body.isProductPriceShiftable === null) attributes.isProductPriceShiftable = null;
+
     if (body.parentCompany) attributes.parentCompany = body.parentCompany;
+    else if (body.parentCompany === null) attributes.parentCompany = null;
+
     if (body.shareHolders) attributes.shareHolders = body.shareHolders;
+    else if (body.shareHolders === null) attributes.shareHolders = null;
+
     if (body.customers) attributes.customers = body.customers;
+    else if (body.customers === null) attributes.customers = null;
+
     if (body.partnerCompanies) attributes.partnerCompanies = body.partnerCompanies;
+    else if (body.partnerCompanies === null) attributes.partnerCompanies = null;
+
     if (body.theme) attributes.theme = body.theme;
+    else if (body.theme === null) attributes.theme = null;
+
     if (body.productCategories) attributes.productCategories = body.productCategories;
+    else if (body.productCategories === null) attributes.productCategories = null;
+
     if (body.productUsecases) attributes.productUsecases = body.productUsecases;
+    else if (body.productUsecases === null) attributes.productUsecases = null;
+
     if (body.freeNotes) attributes.freeNotes = body.freeNotes;
+    else if (body.freeNotes === null) attributes.freeNotes = null;
+
     return { code: intCode, attributes };
   }
 }
