@@ -2,17 +2,17 @@ import { FreeNoteType } from '../types/models';
 
 type NoteType = {
   id: number;
-  valueOrGrowth: string | null;
-  isProductPriceShiftable: boolean | null;
-  parentCompany: string | null;
-  shareHolders: string[] | null;
+  value_or_growth: string | null;
+  is_product_price_shiftable: boolean | null;
+  parent_company: string | null;
+  share_holders: string[] | null;
   customers: string[] | null;
-  partnerCompanies: string[] | null;
-  investingCompanies: string[] | null;
+  partner_companies: string[] | null;
+  investing_companies: string[] | null;
   theme: string[] | null;
-  productCategories: string[] | null;
-  productUsecases: string[] | null;
-  freeNotes: FreeNoteType[] | null;
+  product_categories: string[] | null;
+  product_usecases: string[] | null;
+  free_notes: FreeNoteType[] | null;
 };
 
 export default class StockModel {
@@ -20,7 +20,7 @@ export default class StockModel {
   name!: string;
   market!: string;
   group!: string;
-  industry33!: string;
+  industry_33!: string;
   note!: NoteType;
 
   constructor(props: StockModel) {

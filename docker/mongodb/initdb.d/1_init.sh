@@ -1,1 +1,1 @@
-mongoimport --db=kabu-memo --collection=stocks --type=csv --headerline --columnsHaveTypes --file=/opt/backups/init.csv --ignoreBlanks
+mongoimport --db=kabu-memo --collection=stocks --type=csv --headerline --file=/opt/backups/init.csv

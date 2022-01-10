@@ -13,7 +13,8 @@ export default class Stocks extends Base {
   async get(req: Request): Promise<any> {
     const { attributes, page, limit } = this.validator.getRequest(req.query);
     const result = await this.repository.find(attributes, page, limit);
-    return { res: result };
+    console.log(this.validator.toResponse(result));
+    return { res: this.validator.toResponse(result) };
   }
 
   async patch(req: Request): Promise<any> {

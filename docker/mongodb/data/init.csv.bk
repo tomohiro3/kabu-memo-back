@@ -1,4 +1,4 @@
-code,name,market,code_of_industry_33,industry_33,code_of_industry_17,industry_17,code_of_group,group
+code.int32(),name.string(),market.string(),code_of_industry_33.int32(),industry_33.string(),code_of_industry_17.int32(),industry_17.string(),code_of_group.int32(),group.string()
 1301,極洋,東1,50,水産・農林業,1,食品,7,TOPIX Small 2
 1332,日本水産,東1,50,水産・農林業,1,食品,4,TOPIX Mid400
 1333,マルハニチロ,東1,50,水産・農林業,1,食品,4,TOPIX Mid400
