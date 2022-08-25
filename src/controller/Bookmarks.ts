@@ -7,9 +7,9 @@ export default class Bookmarks extends Base {
   }
   async get(req: any): Promise<any> {
     const result = await this.repository.find({}, 1, 50);
-    return { res: result };
+    return result;
   }
   async post(req: any): Promise<any> {
-    return { res: 'post' };
+    return 'post';
   }
 }

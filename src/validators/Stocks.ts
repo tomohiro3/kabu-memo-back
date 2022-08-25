@@ -1,5 +1,5 @@
 import { Dict } from '../types/lib';
-import { FreeNoteType, Stock } from '../types/models';
+import { FreeNoteType } from '../types/models';
 
 type GetRequestQuery = {
   code?: string;
@@ -35,7 +35,7 @@ export default class StocksValidator {
   getRequest(query: GetRequestQuery) {
     const attributes: Dict = {};
     let page = 1;
-    let limit = 10000;
+    let limit = 50;
     if (query.code) attributes.code = Number(query.code);
     if (query.name) attributes.name = query.name;
     if (query.market) attributes.market = query.market;
@@ -93,7 +93,7 @@ export default class StocksValidator {
   }
 
   toResponse(data: any) {
-    return data.map((stock: Stock) => {
+    return data.map((stock: any) => {
       return {
         code: stock.code,
         name: stock.name,
@@ -109,7 +109,7 @@ export default class StocksValidator {
         customers: stock.customers || [],
         partnerCompanies: stock.partner_companies || [],
         investingCompanies: stock.investing_companies || [],
-        theme: stock.theme || [],
+        themes: stock.themes || [],
         productCategories: stock.product_categories || [],
         productUsecases: stock.product_usecases || [],
         freeNotes: stock.free_notes || [],

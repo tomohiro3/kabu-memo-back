@@ -17,6 +17,7 @@ export default function makeApi(Controller: ControllerConstructor, pool: Mongodb
         method === 'put' || method === 'patch' || method === 'delete' ? '/:code' : '/',
         async function (req, res) {
           const result = await controller[method]!(req);
+          console.log(result);
           return res.json(result);
         }
       );
